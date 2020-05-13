@@ -36,8 +36,8 @@ instance_groups:
   networks:
   - name: ((elasticsearch_network))
 
-- name: errands
- jobs:
+- name: runerrands
+  jobs:
   - name: pre-upgrade
     release: elasticsearch
   - name: post-upgrade
