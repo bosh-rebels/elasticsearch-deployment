@@ -1,0 +1,75 @@
+---
+name: ((deployment_name))
+releases:
+- name: kibana
+  version: ((kibana_version))
+  sha1: ((kibana_sha1))
+
+- name: elasticsearch
+  version: ((elasticsearch_version))
+  sha1: ((elasticsearch_sha1))
+
+stemcells:
+- os: ((stemcell_os)
+  alias: default
+  version: ((stemcell_version))
+
+instance_groups:
+- name: elasticsearch
+  jobs:
+  - name: elasticsearch
+    release: elasticsearch
+    properties:
+      elasticsearch:
+        node:
+          allow_master: true
+          allow_ingest: true
+          allow_data: true
+  instances: ((elasticsearch_instances))
+  stemcell: default
+  azs:
+  - z1
+  - z2
+  - z3
+  vm_type: ((elasticsearch_vm_type))
+  persistent_disk_type: ((elasticsearch_persistent_disk_type))
+  networks:
+  - name: ((elasticsearch_network))
+
+- name: errands
+ jobs:
+  - name: pre-upgrade
+    release: elasticsearch
+  - name: post-upgrade
+    release: elasticsearch
+  instances: 1
+  lifecycle: errand
+  stemcell: default
+  azs:
+  - z1
+  - z2
+  - z3
+  vm_type: ((errands_vm_type))
+  persistent_disk: 1024
+  networks:
+  - name: ((errands_network))
+  
+- name: kibana
+  jobs:
+  - name: kibana
+    release: kibana
+  instances: ((kibana_instances))
+  stemcell: default
+  azs:
+  - z1
+  - z2
+  - z3
+  vm_type: ((kibana_vm_type))
+  persistent_disk_type: ((kibana_persistent_disk_type))
+  networks:
+  - name: ((kibana_network))
+update:
+  canaries: 1
+  max_in_flight: 1
+  canary_watch_time: 30000-600000
+  update_watch_time: 5000-600000
