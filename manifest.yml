@@ -10,7 +10,7 @@ releases:
   sha1: ((elasticsearch_sha1))
 
 stemcells:
-- os: ((stemcell_os)
+- os: ((stemcell_os))
   alias: default
   version: ((stemcell_version))
 
