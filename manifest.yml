@@ -25,6 +25,8 @@ instance_groups:
           allow_master: true
           allow_ingest: true
           allow_data: true
+        config_options:
+          xpack.security.enabled: ((xpack_security_enabled))
   instances: ((elasticsearch_instances))
   stemcell: default
   azs:
