@@ -11,7 +11,7 @@ inputs:
   - name: release
 outputs:
   - name: versions
-param: 
+params: 
   release_name:
 
 run:
