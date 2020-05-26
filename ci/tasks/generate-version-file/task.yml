@@ -9,6 +9,8 @@ image_resource:
 
 inputs:
   - name: release
+  - name: versions
+    optional: true
 outputs:
   - name: versions
 params: 
@@ -20,7 +22,7 @@ run:
     - -ec
     - |
       version=$(cat release/version)
-      sha1=$(sha1sum tarball/*.tgz | awk '{print $1}')
+      sha1=$(sha1sum release/*.tgz | awk '{print $1}')
 
       echo "${release_name}_version: ${version}" >> versions/versions.yml
       echo "${release_name}_sha1: ${sha1}" >> versions/versions.yml
