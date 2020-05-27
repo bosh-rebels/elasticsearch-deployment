@@ -33,7 +33,7 @@ run:
       
       bosh -d "$deployment" manifest > manifest.yml
 
-      release_list=$(ruby ../tasks/export-release/release_version.rb)
+      release_list=$(ruby elasticsearch-deployment/ci/tasks/export-releases/release_version.rb)
 
       mkdir -p deployment/{releases,stemcells,vars_file}
       for release in $release_list; do
