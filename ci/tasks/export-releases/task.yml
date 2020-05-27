@@ -39,7 +39,7 @@ run:
       for release in $release_list; do
         bosh -d "$deployment" \
           export-release "${release}" "${stemcell_os}/${stemcell_version}" \
-          --dir=../deployment/releases/
+          --dir=deployment/releases/
       done  
 
       cp ubuntu-xenial/stemcell.tgz deployment/stemcells/
