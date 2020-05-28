@@ -8,7 +8,7 @@ image_resource:
     tag: 'latest'
 
 inputs:
-  - name: deployment
+  - name: tarball
   - name: versions
 
 run:
@@ -16,7 +16,7 @@ run:
   args:
     - -ec
     - |
-      deployed_version=$(cat deployment/var_file/versions.yml | grep _sha1)
+      deployed_version=$(cat tarball/deployment/vars_file/versions.yml | grep _sha1)
       new_deployment_version=$(cat versions/versions.yml | grep _sha1)
 
       if [[ $deployed_version != $new_deployment_version ]]; then
