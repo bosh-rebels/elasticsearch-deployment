@@ -16,9 +16,18 @@ run:
   args:
     - -ec
     - |
-      deployed_version=$(cat tarball/deployment/vars_file/versions.yml | grep _sha1)
       new_deployment_version=$(cat versions/versions.yml | grep _sha1)
 
+      deployed_version_file=tarball/deployment/vars_file/versions.yml
+
+      echo "Check if previous deployed version file exits"
+      if [[ -f $deployed_version_file ]]; then
+        deployed_version=$(cat $deployed_version_file | grep _sha1)
+      else
+        deployed_version=
+      fi
+
+      echo "compare previous deployed version and current deployment version is different"
       if [[ $deployed_version != $new_deployment_version ]]; then
         echo "Changes in releases"
       else
