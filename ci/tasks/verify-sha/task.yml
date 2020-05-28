@@ -1,0 +1,27 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: paymentshubrebels/bosh-utils
+    tag: 'latest'
+
+inputs:
+  - name: deployment
+  - name: versions
+
+run:
+  path: /bin/bash
+  args:
+    - -ec
+    - |
+      deployed_version=$(cat deployment/var_file/versions.yml | grep _sha1)
+      new_deployment_version=$(cat versions/versions.yml | grep _sha1)
+
+      if [[ $deployed_version != $new_deployment_version ]]; then
+        echo "Changes in releases"
+      else
+        echo "No Changes in the releases"
+        exit 1
+      fi
