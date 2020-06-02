@@ -31,7 +31,7 @@ run:
 
       echo "compare previous deployment releases version and current releases version"
       if [[ $releases_version != $deployment_version ]]; then
-        cp bumped_version/version target/
+        cp bumped-version/version target/
       else
-        cp running_version/version target/
+        cp running-version/version target/
       fi
