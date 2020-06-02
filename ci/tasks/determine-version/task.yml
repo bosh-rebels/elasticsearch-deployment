@@ -13,6 +13,10 @@ inputs:
   - name: running-version
   - name: bumped-version
   - name: target-version
+
+outputs:
+- name: target
+
 run:
   path: /bin/bash
   args:
