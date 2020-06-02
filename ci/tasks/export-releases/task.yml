@@ -19,7 +19,7 @@ inputs:
   - name: elasticsearch-deployment
   - name: ubuntu-xenial
   - name: vars_files
-  - name: deployment-version
+  - name: target-version
 outputs:
   - name: tarball
 
