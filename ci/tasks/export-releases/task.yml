@@ -29,7 +29,7 @@ run:
     - -exc
     - |
       stemcell_version=$(cat ubuntu-xenial/version)
-      deployment_version=$(cat deployment-version/version)
+      deployment_version=$(cat target-version/version)
       
       bosh -d "$deployment" manifest > manifest.yml
 
