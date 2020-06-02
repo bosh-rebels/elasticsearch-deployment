@@ -23,10 +23,8 @@ run:
     - -exc
     - |
       releases_version=$(cat versions/versions.yml | grep _sha1)
-      ls -l tarball/deployment/
       deployment_version_file=tarball/deployment/vars_file/versions.yml
-      ls -l $deployment_version_file
-      cat $deployment_version_file
+
       echo "Check if previous deployed version file exits"
       if [[ -f $deployment_version_file ]]; then
         deployment_version=$(cat $deployment_version_file | grep _sha1)
