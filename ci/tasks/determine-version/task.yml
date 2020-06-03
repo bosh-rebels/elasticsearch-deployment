@@ -21,6 +21,7 @@ run:
   args:
     - -exc
     - |
+      set -x
       releases_version=$(cat versions/versions.yml | grep _sha1)
       deployment_version_file=tarball/deployment/vars_file/versions.yml
 

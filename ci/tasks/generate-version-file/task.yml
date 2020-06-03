@@ -19,8 +19,9 @@ params:
 run:
   path: /bin/bash
   args:
-    - -ec
+    - -exc
     - |
+      set -x
       version=$(cat release/version)
       sha1=$(sha1sum release/*.tgz | awk '{print $1}')
 

@@ -28,6 +28,7 @@ run:
   args:
     - -exc
     - |
+      set -x
       stemcell_version=$(cat ubuntu-xenial/version)
       deployment_version=$(cat target-version/version)
       
