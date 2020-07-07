@@ -29,10 +29,7 @@ instance_groups:
           xpack.security.enabled: ((xpack_security_enabled))
   instances: ((elasticsearch_instances))
   stemcell: default
-  azs:
-  - z1
-  - z2
-  - z3
+  azs: ((azs))
   vm_type: ((elasticsearch_vm_type))
   persistent_disk_type: ((elasticsearch_persistent_disk_type))
   networks:
@@ -52,10 +49,7 @@ instance_groups:
   instances: 1
   lifecycle: errand
   stemcell: default
-  azs:
-  - z1
-  - z2
-  - z3
+  azs: ((azs))
   vm_type: ((errands_vm_type))
   persistent_disk: 1024
   networks:
@@ -67,10 +61,7 @@ instance_groups:
     release: kibana
   instances: ((kibana_instances))
   stemcell: default
-  azs:
-  - z1
-  - z2
-  - z3
+  azs: ((azs))
   vm_type: ((kibana_vm_type))
   persistent_disk_type: ((kibana_persistent_disk_type))
   networks:
