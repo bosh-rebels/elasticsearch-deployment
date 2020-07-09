@@ -1,5 +1,4 @@
 ---
-name: ((deployment_name))
 releases:
 - name: kibana
   version: ((kibana_version))
