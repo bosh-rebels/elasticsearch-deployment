@@ -25,14 +25,10 @@ instance_groups:
           allow_master: true
           allow_ingest: true
           allow_data: true
-        config_options:
-          xpack.security.enabled: ((xpack_security_enabled))
-          xpack.security.transport.ssl.enabled: true
-          xpack.security.transport.ssl.keystore.type: PKCS12
-          xpack.security.transport.ssl.verification_mode: certificate
-          xpack.security.transport.ssl.keystore.path: elastic-certificates.p12
-          xpack.security.transport.ssl.truststore.path: elastic-certificates.p12
-          xpack.security.transport.ssl.truststore.type: PKCS12
+        ssl:
+          ca: ((elasticsearch_ssl.ca))
+          cert: ((elasticsearch_ssl.certificate))
+          key: ((elasticsearch_ssl.private_key))
   instances: ((elasticsearch_instances))
   stemcell: default
   azs: ((azs))
@@ -77,3 +73,17 @@ update:
   max_in_flight: 1
   canary_watch_time: 30000-600000
   update_watch_time: 5000-600000
+
+variables:
+- name: default_ca
+  type: certificate
+  options:
+    is_ca: true
+    common_name: bosh_ca
+    duration: 730
+- name: elasticsearch_ssl
+  type: certificate
+  options:
+    ca: default_ca
+    common_name: "((deployment)).((domain_name))"
+    alternative_names: ["*.((deployment)).((domain_name))"]
