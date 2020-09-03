@@ -39,11 +39,6 @@ instance_groups:
     release: elasticsearch
   - name: post-upgrade
     release: elasticsearch
-  - name: apply-license
-    release: elasticsearch
-    properties:
-      elasticsearch:
-        license: ((elasticsearch_license))
   instances: 1
   lifecycle: errand
   stemcell: default
