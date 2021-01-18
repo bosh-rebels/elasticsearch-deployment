@@ -58,6 +58,8 @@ instance_groups:
             - name: remote_monitoring_user
               password: ((remote_monitoring_user_passwd))
         secure_settings:
+          - command: remove
+            name: bootstrap.password
           - command: add
             name: bootstrap.password
             value: ((elastic_user_passwd))
