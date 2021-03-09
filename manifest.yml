@@ -6,8 +6,8 @@ releases:
   sha1: ((kibana_sha1))
 
 - name: elasticsearch
-  version: ((elasticsearch_version))
-  sha1: ((elasticsearch_sha1))
+  version: 1.0.20+dev.1
+  url: file://es.tgz
 
 stemcells:
 - os: ((stemcell_os))
@@ -43,7 +43,10 @@ instance_groups:
               certificate: ((transport_certificate.certificate))
               ca: ((transport_certificate.ca))
             http:
-              enabled: false
+              enabled: true
+              private_key: ((http_certificate.private_key))
+              certificate: ((http_certificate.certificate))
+              ca: ((http_certificate.ca))
         secure_settings:
           - command: add
             name: bootstrap.password
