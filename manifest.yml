@@ -6,8 +6,8 @@ releases:
   sha1: ((kibana_sha1))
 
 - name: elasticsearch
-  version: 1.0.20+dev.1
-  url: file://es.tgz
+  version: ((elasticsearch_version))
+  sha1: ((elasticsearch_sha1))
 
 stemcells:
 - os: ((stemcell_os))
