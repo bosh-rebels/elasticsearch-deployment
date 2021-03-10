@@ -28,6 +28,7 @@ instance_groups:
     properties:
       elasticsearch:
         client:
+          protocol: https
           username: elastic
           password: ((elastic_user_passwd))
         node:
