@@ -101,6 +101,8 @@ instance_groups:
     properties:
       kibana:
         elasticsearch:
+          ssl:
+            verificationMode: none
           security:
             enabled: true
             username: kibana_system
