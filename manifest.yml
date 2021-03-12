@@ -101,6 +101,7 @@ instance_groups:
     properties:
       kibana:
         elasticsearch:
+          protocol: https
           ssl:
             verificationMode: none
           security:
