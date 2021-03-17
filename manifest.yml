@@ -1,6 +1,10 @@
 ---
 name: ((deployment))
 releases:
+- name: cron
+  version: ((cron_version))
+  sha1: ((cron_sha1))
+
 - name: kibana
   version: ((kibana_version))
   sha1: ((kibana_sha1))
@@ -23,7 +27,7 @@ instance_groups:
        elasticsearch_address:
          as: elasticsearch_address
     custom_provider_definitions:
-     - name: elasticsearch_address  
+     - name: elasticsearch_address
        type: address
     properties:
       elasticsearch:
@@ -96,7 +100,7 @@ instance_groups:
 
 - name: kibana
   jobs:
-  - name: kibana  
+  - name: kibana
     release: kibana
     properties:
       kibana:
@@ -109,7 +113,7 @@ instance_groups:
             username: kibana_system
             password: ((kibana_system_user_passwd))
         xpack:
-          encryptedSavedObjects: 
+          encryptedSavedObjects:
             encryptionKey: ((kibana_encryptionkey))
   instances: ((kibana_instances))
   stemcell: default
