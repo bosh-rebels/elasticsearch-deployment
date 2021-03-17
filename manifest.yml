@@ -80,7 +80,6 @@ instance_groups:
       cron:
         variables:
           deployment_name: ((deployment))
-        entries: ((backup_cron_entry))
   instances: ((elasticsearch_instances))
   stemcell: default
   azs: ((azs))
