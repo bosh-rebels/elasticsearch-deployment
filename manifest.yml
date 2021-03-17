@@ -74,7 +74,13 @@ instance_groups:
               password: ((beats_system_user_passwd))
             - name: remote_monitoring_user
               password: ((remote_monitoring_user_passwd))
-
+  - name: cron
+    release: cron
+    properties:
+      cron:
+        variables:
+          deployment_name: ((deployment))
+          entries: ((backup_cron_entry))
   instances: ((elasticsearch_instances))
   stemcell: default
   azs: ((azs))
