@@ -80,6 +80,8 @@ instance_groups:
       cron:
         variables:
           deployment_name: ((deployment))
+  - name: repository-s3
+    release: elasticsearch
   instances: ((elasticsearch_instances))
   stemcell: default
   azs: ((azs))
