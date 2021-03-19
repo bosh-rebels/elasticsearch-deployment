@@ -39,6 +39,12 @@ instance_groups:
           allow_master: true
           allow_ingest: true
           allow_data: true
+        jvm_options:
+        - -Des.allow_insecure_settings=true
+        plugin_install_opts:
+        - --batch
+        plugins:
+        - epository-s3: /var/vcap/packages/repository-s3/repository-s3.zip
         security:
           enabled: true
           ssl:
