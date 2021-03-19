@@ -85,7 +85,11 @@ instance_groups:
     properties:
       cron:
         variables:
-          deployment_name: ((deployment))
+          backup_repository: ((deployment))-backup
+          elastic_user: elastic
+          elastic_password : ((elastic_user_passwd))
+          elastic_url: ((deployment))-elasticsearch.((domain_name))
+
   - name: repository-s3
     release: elasticsearch
   instances: ((elasticsearch_instances))
