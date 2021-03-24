@@ -1,10 +1,6 @@
 ---
 name: ((deployment))
 releases:
-- name: cron
-  version: ((cron_version))
-  sha1: ((cron_sha1))
-
 - name: kibana
   version: ((kibana_version))
   sha1: ((kibana_sha1))
@@ -41,10 +37,6 @@ instance_groups:
           allow_data: true
         jvm_options:
         - -Des.allow_insecure_settings=true
-        plugin_install_opts:
-        - --batch
-        plugins:
-        - epository-s3: /var/vcap/packages/repository-s3/repository-s3.zip
         security:
           enabled: true
           ssl:
@@ -62,6 +54,13 @@ instance_groups:
           - command: add
             name: bootstrap.password
             value: ((elastic_user_passwd))
+
+  - name: pre-upgrade
+    release: elasticsearch
+
+  - name: post-upgrade
+    release: elasticsearch
+
   - name: setup-builtin-users
     release: elasticsearch
     properties:
@@ -80,18 +79,6 @@ instance_groups:
               password: ((beats_system_user_passwd))
             - name: remote_monitoring_user
               password: ((remote_monitoring_user_passwd))
-  - name: cron
-    release: cron
-    properties:
-      cron:
-        variables:
-          backup_repository: ((deployment))-backup
-          elastic_user: elastic
-          elastic_password : ((elastic_user_passwd))
-          elastic_url: ((deployment))-elasticsearch.((domain_name))
-
-  - name: repository-s3
-    release: elasticsearch
   instances: ((elasticsearch_instances))
   stemcell: default
   azs: ((azs))
