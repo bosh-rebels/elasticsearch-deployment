@@ -87,21 +87,6 @@ instance_groups:
   networks:
   - name: ((elasticsearch_network))
 
-- name: runerrands
-  jobs:
-  - name: pre-upgrade
-    release: elasticsearch
-  - name: post-upgrade
-    release: elasticsearch
-  instances: 1
-  lifecycle: errand
-  stemcell: default
-  azs: ((azs))
-  vm_type: ((errands_vm_type))
-  persistent_disk: 1024
-  networks:
-  - name: ((errands_network))
-
 - name: kibana
   jobs:
   - name: kibana
