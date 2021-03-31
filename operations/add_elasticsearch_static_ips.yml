@@ -1,0 +1,4 @@
+---
+- type: replace
+  path: /instance_groups/name=elasticsearch/networks/0/static_ips?
+  value: ((elasticsearch_static_ips))

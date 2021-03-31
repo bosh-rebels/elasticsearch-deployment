@@ -1,0 +1,13 @@
+- type: replace
+  path: /instance_groups/name=elasticsearch/jobs/name=elasticsearch/properties/elasticsearch/smtp?
+  value:
+    enabled: true
+    default_account: default
+    accounts:
+      - name: default
+        profile: standard
+        host: ((smtp_host))
+        port: ((smtp_port))
+        starttls.enable: ((smpt_starttls))
+        auth: ((smtp_auth))
+        user: ((smtp_user))

@@ -1,0 +1,8 @@
+- type: replace
+  path: /instance_groups/name=elasticsearch/jobs?/-
+  value: 
+    name: apply-license
+    release: elasticsearch
+    properties:
+      elasticsearch:
+        license: '((elasticsearch_license))'

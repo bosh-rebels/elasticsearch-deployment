@@ -1,0 +1,48 @@
+- type: replace
+  path: /releases/-
+  value:
+    name: cron
+    version: ((cron_version))
+    sha1: ((cron_sha1))
+
+- type: replace
+  path: /instance_groups/name=elasticsearch/vm_extensions?/-
+  value: ((iam_instance_profile))
+
+- type: replace
+  path: /instance_groups/name=elasticsearch/jobs/-
+  value: 
+    name: elasticsearch-snapshot
+    release: elasticsearch
+    properties:
+      elasticsearch:
+        username: elastic
+        password: ((elastic_user_passwd))
+        snapshots:
+          type: s3
+          settings:
+            bucket: ((snapshot_repository))
+          repository: ((snapshot_repository))
+          
+
+- type: replace
+  path: /instance_groups/name=elasticsearch/jobs/-
+  value: 
+    name: cron
+    release: cron
+    properties:
+      cron:
+        entries:
+          - log: /var/vcap/sys/log/cron/out.log
+            minute: '0'
+            hour: ((backup_hour))
+            day: '*'
+            month: '*'
+            wday: '*'
+            user: vcap
+            script:
+              name: backup.sh
+              contents: |
+                #!/bin/bash
+                set -x
+                /var/vcap/jobs/elasticsearch-snapshot/bin/run
