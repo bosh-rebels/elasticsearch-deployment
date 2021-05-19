@@ -22,6 +22,7 @@
           type: s3
           settings:
             bucket: ((snapshot_repository))
+            server_side_encryption: ((server_side_encryption_enable))
           repository: ((snapshot_repository))
           
 
